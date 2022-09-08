@@ -12,8 +12,8 @@ const StyledErrorState = styled.div`
 
 export const ErrorState = () => (
   <StyledErrorState>
-    <Text size="heading1" as="div" role="presentation">⚠️</Text>
-    <Text size="heading1" color="grey">
+    <Text $size="heading1" as="div" role="presentation">⚠️</Text>
+    <Text $size="heading1" $color="grey">
       Something went wrong. Try refreshing.
     </Text>
   </StyledErrorState>

@@ -16,7 +16,7 @@ export function getTransactionPropsFromData(
     return { ...transaction, balanceAfterTransaction: currentBalance };
   });
 
-  // Display transactions in reverse chronological order
+  // Display transactions in reverse chronological order. This assumes an API response with transactions in chronological order
   const reversedTransactions = [...transactionsWithCurrentBalance];
   reversedTransactions.reverse();
 

@@ -1,21 +1,35 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
+  AccountHeader,
   ErrorState,
   GlobalStyle,
   TransactionList,
 } from './components';
+import styled from 'styled-components';
 
 import type { AccountData } from './types';
 
+const StyledLayout = styled.div`
+  @media (min-width: 800px) {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+  }
+`
+
 function App() {
   // State
-  const [data, setData] = useState<AccountData | undefined>(undefined);
+  const [data, setData] = useState<AccountData | Record<string, any>>({});
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [hasFetchError, setHasFetchError] = useState<boolean>(false);
+  const { avatar, balance, name, transactions } = data;
   // Memoized values
   const transactionsListReady = useMemo(
-    () => !isFetching && data?.balance !== undefined && data?.transactions,
-    [isFetching, data]
+    () => !isFetching && balance !== undefined && transactions,
+    [isFetching, balance, transactions]
+  );
+  const accountHeaderReady = useMemo(
+    () => !isFetching && name && avatar && transactionsListReady,
+    [isFetching, name, avatar, transactionsListReady]
   );
   // Side effects
   useEffect(() => {
@@ -25,10 +39,8 @@ function App() {
         const response = await fetch('http://localhost:3001/api/till');
         const data = await response.json();
         if (data) {
-          setTimeout(() => {
-            setData(data);
-            setIsFetching(false);
-          }, 2000)
+          setData(data);
+          setIsFetching(false);
         }
       } catch {
         setHasFetchError(true);
@@ -36,20 +48,28 @@ function App() {
     }
 
     fetchAccountData();
-  }, [])
+  }, []);
 
   return (
     <div className="App">
       <GlobalStyle />
-      {hasFetchError && (
-        <ErrorState />
-      )}
-      {transactionsListReady && (
-        <TransactionList
-          startingBalance={data?.balance as AccountData['balance']}
-          transactions={data?.transactions as AccountData['transactions']}
-        />
-      )}
+      {hasFetchError && <ErrorState />}
+      <StyledLayout>
+        {accountHeaderReady && (
+          <AccountHeader
+            name={name}
+            avatarUrl={avatar}
+            startingBalance={balance as AccountData['balance']}
+            transactions={transactions}
+          />
+        )}
+        {transactionsListReady && (
+          <TransactionList
+            startingBalance={balance as AccountData['balance']}
+            transactions={transactions as AccountData['transactions']}
+          />
+        )}
+      </StyledLayout>
     </div>
   );
 }

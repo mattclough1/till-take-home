@@ -41,7 +41,7 @@ export const Transaction = ({
   return (
     <StyledTransaction $dark={dark} role="row">
       {/* Merchant */}
-      <Text size="large" role="cell">
+      <Text $size="large" role="cell">
         {merchant}
       </Text>
 
@@ -49,9 +49,9 @@ export const Transaction = ({
       <Text
         as="div"
         role="cell"
-        align="right"
-        size="large"
-        color={type === 'credit' ? (dark ? 'blue-500' : 'blue-400') : 'black'}
+        $align="right"
+        $size="large"
+        $color={type === 'credit' ? (dark ? 'blue-500' : 'blue-400') : 'black'}
       >
         <ScreenReaderOnly>
           {currencyFormatter.format(amount)}
@@ -64,12 +64,12 @@ export const Transaction = ({
       </Text>
 
       {/* Date */}
-      <Text color="grey" role="cell" mt={0.5} as="div">
+      <Text color="grey" role="cell" $mt={0.5} as="div">
         {dateFormatter.format(new Date(date))}
       </Text>
 
       {/* Account Balance After Transaction */}
-      <Text align="right" color="grey" role="cell" mt={0.5} as="div">
+      <Text $align="right" $color="grey" role="cell" $mt={0.5} as="div">
         <StyledTransactionAccountBalance>
           <AccountBalanceIcon />
           {currencyFormatter.format(balanceAfterTransaction)}
@@ -78,7 +78,7 @@ export const Transaction = ({
 
       {/* Details */}
       {details && (
-        <Text color="grey" role="cell" mt={0.5} as="div">
+        <Text $color="grey" role="cell" $mt={0.5} as="div">
           <i>{details}</i>
         </Text>
       )}

@@ -5,6 +5,7 @@ export const currencyFormatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 
+// Note: this will format to UTC
 export const dateFormatter = new Intl.DateTimeFormat('en', {
   dateStyle: 'medium',
 });
