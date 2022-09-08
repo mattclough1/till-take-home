@@ -1,9 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Avatar,
+  ErrorState,
   GlobalStyle,
-  Text,
-  Transaction,
   TransactionList,
 } from './components';
 
@@ -22,22 +20,29 @@ function App() {
   // Side effects
   useEffect(() => {
     async function fetchAccountData() {
-      const data = await fetch('https://mattclough.com/api/till-demo');
-      console.log(data);
+      try {
+        setIsFetching(true);
+        const response = await fetch('http://localhost:3001/api/till');
+        const data = await response.json();
+        if (data) {
+          setTimeout(() => {
+            setData(data);
+            setIsFetching(false);
+          }, 2000)
+        }
+      } catch {
+        setHasFetchError(true);
+      }
     }
 
-    try {
-      fetchAccountData();
-    } catch {
-      setHasFetchError(true);
-    }
+    fetchAccountData();
   }, [])
 
   return (
     <div className="App">
       <GlobalStyle />
       {hasFetchError && (
-        'Something went wrong'
+        <ErrorState />
       )}
       {transactionsListReady && (
         <TransactionList

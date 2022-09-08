@@ -1,6 +1,5 @@
-import { useId } from 'react';
 import styled from 'styled-components';
-import { AccountBalanceIcon, ScreenReaderOnly, Text } from '../atoms';
+import { AccountBalanceIcon, ScreenReaderOnly, Text } from '../../components';
 import { COLORS } from '../../styles';
 import { currencyFormatter, dateFormatter } from '../../utils';
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { withSpace } from '../../HOCs';
 import { COLORS, TYPE_SCALE } from '../../styles';
 
 interface TextProps {
