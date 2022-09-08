@@ -13,8 +13,12 @@ const getFontSizeFromProps = ({ size }: TextProps) =>
 const getFontColorFromProps = ({ color }: TextProps) =>
   color ? COLORS[color] : COLORS.black;
 
-export const Text = styled.span<TextProps>`
+const Text = styled.span<TextProps>`
   font-size: ${getFontSizeFromProps};
   color: ${getFontColorFromProps};
   text-align: ${({ align }) => align};
 `;
+
+const TextWithSpace = withSpace(Text);
+
+export { TextWithSpace as Text };

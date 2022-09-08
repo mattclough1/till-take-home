@@ -40,9 +40,12 @@ export const Transaction = ({
 }: TransactionProps) => {
   return (
     <StyledTransaction $dark={dark} role="row">
+      {/* Merchant */}
       <Text size="large" role="cell">
         {merchant}
       </Text>
+
+      {/* Amount */}
       <Text
         as="div"
         role="cell"
@@ -59,17 +62,23 @@ export const Transaction = ({
           {currencyFormatter.format(amount)}
         </span>
       </Text>
-      <Text color="grey" role="cell">
+
+      {/* Date */}
+      <Text color="grey" role="cell" mt={0.5} as="div">
         {dateFormatter.format(new Date(date))}
       </Text>
-      <Text align="right" color="grey" role="cell">
+
+      {/* Account Balance After Transaction */}
+      <Text align="right" color="grey" role="cell" mt={0.5} as="div">
         <StyledTransactionAccountBalance>
           <AccountBalanceIcon />
           {currencyFormatter.format(balanceAfterTransaction)}
         </StyledTransactionAccountBalance>
       </Text>
+
+      {/* Details */}
       {details && (
-        <Text color="grey" role="cell">
+        <Text color="grey" role="cell" mt={0.5} as="div">
           <i>{details}</i>
         </Text>
       )}
