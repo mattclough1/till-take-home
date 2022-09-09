@@ -1,6 +1,12 @@
 import type { Transaction } from '../types';
 import type { TransactionProps } from '../components';
 
+/**
+ * Takes API transaction data and maps it to props
+ * to be used with Transaction components
+ * adds `balanceAfterTransaction` and `dark` props
+ */
+
 export function getTransactionPropsFromData(
   transactions: Transaction[],
   startingBalance: number

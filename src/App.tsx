@@ -2,14 +2,16 @@ import React, { useEffect, useMemo, useState } from 'react';
 import {
   AccountHeader,
   ErrorState,
-  GlobalStyle,
   TransactionList,
 } from './components';
+import { GlobalStyle } from './styles';
 import styled from 'styled-components';
 
 import type { AccountData } from './types';
 
 const StyledLayout = styled.div`
+  min-height: 100vh;
+
   @media (min-width: 800px) {
     display: grid;
     grid-template-columns: 4fr 8fr;

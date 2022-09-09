@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 import { AccountBalanceIcon, Avatar, Text } from '../../components';
 import { currencyFormatter } from '../../utils';
+import { COLORS } from '../../styles';
 
 import type { Transaction } from '../../types';
 
@@ -12,9 +13,13 @@ interface AccountHeaderProps {
   startingBalance: number;
 }
 
-const StyledAccountHeader = styled.div`
+const StyledAccountHeader = styled.section`
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+
+  @media (min-width: 800px) {
+    border-right: 2px solid ${COLORS['blue-100']}
+  }
 `;
 
 const StyledHeaderAccountBalance = styled.div`

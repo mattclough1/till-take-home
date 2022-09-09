@@ -3,6 +3,10 @@ import { AccountBalanceIcon, ScreenReaderOnly, Text } from '../../components';
 import { COLORS } from '../../styles';
 import { currencyFormatter, dateFormatter } from '../../utils';
 
+/**
+ * A single transaction row
+ */
+
 export interface TransactionProps {
   amount: number;
   dark?: boolean;

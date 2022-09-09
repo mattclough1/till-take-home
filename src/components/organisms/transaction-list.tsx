@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Box, ScreenReaderOnly, Text, Transaction } from '../../components';
+import { ScreenReaderOnly, Text, Transaction } from '../../components';
 import { getTransactionPropsFromData } from '../../utils';
 
 import type { Transaction as TransactionType } from '../../types';
@@ -26,12 +26,10 @@ export const TransactionList = ({
 
   return (
     <section>
-      <ScreenReaderOnly>
-        <Text as="h2">
-          Recent Transactions
-        </Text>
-      </ScreenReaderOnly>
-      <Box />
+      <Text as="h2" $size="heading2" $px={2}>
+        Recent Transactions
+      </Text>
+      <section />
       <StyledTransactionList
         role="table"
         aria-rowcount={transactionProps.length}

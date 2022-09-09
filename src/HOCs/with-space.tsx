@@ -12,6 +12,12 @@ export function getSpaceValueFromProps(key: SpaceProp) {
   }
 }
 
+/**
+ * HOC to add spacing props to styled components
+ * e.g. mt = margin-top
+ * spacings follow 0.5rem units
+ */
+
 export function withSpace<C extends AnyStyledComponent>(Component: C) {
   const StyledComponentWithSpace = styled<C>(Component)<WithSpaceProps>`
   ${({ $mx }) => $mx && css`
@@ -27,6 +33,14 @@ export function withSpace<C extends AnyStyledComponent>(Component: C) {
     margin-bottom: ${getSpaceValueFromProps('$mb')};
     margin-left: ${getSpaceValueFromProps('$ml')};
     margin-right: ${getSpaceValueFromProps('$mr')};
+  ${({ $px }) => $px && css`
+    padding-left: ${getSpaceValueFromProps('$px')({ $px })};
+    padding-right: ${getSpaceValueFromProps('$px')({ $px })};
+  `}
+  ${({ $py }) => $py && css`
+    padding-top: ${getSpaceValueFromProps('$py')({ $py })};
+    padding-bottom: ${getSpaceValueFromProps('$py')({ $py })};
+  `}
     padding: ${getSpaceValueFromProps('$pa')};
     padding-top: ${getSpaceValueFromProps('$pt')};
     padding-bottom: ${getSpaceValueFromProps('$pb')};
